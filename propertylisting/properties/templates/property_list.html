@@ -1,0 +1,44 @@
+{% extends "base.html" %} 
+{% block title %} Home Page {% endblock %}
+{% block content %}
+<div class="container">
+    <div>
+      <h1 class="display-4">{{heading}}</h1>
+    </div>
+    <div class="container">
+      <div clas="row">
+        <div class="col-4 margin-top-1">
+          <a href="">Go Back</a> | <a href="">Create Client</a>
+        </div>  
+        <hr>
+        <div class="col-lg-6 col-md-6 col-xs-6 margin-top-1">Page: 
+              {% for page in page_range %}
+                <a href="">{{page}}</a>
+              {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div id="COGNITO-data" class="card-deck row">
+      {% for property_list in property_list %}
+          <div class="col-lg-3 col-md-6 col-xs-12 margin-top-1">
+            <a href="">
+              <div class="card h-100">
+                <div class="card-header">
+                  <i class="fa fa-address-card fa-5x fa-align-center" aria-hidden="true"></i>
+                </div>
+                <div class="card-body">
+                  <h4 class="card-title">{{property_list.price}}</h4>
+                  <ul>
+                    <li><span class="card_attr">BEDROOMS: </span>{{property_list.bedrooms}}</li>
+                    <li><span class="card_attr">ADDRESS: </span>{{property_list.address}}</li>
+                    <li><span class="card_attr">COUNTY: </span>{{property_list.county}}</li>
+                  </ul>
+                </div>
+              </div>
+            </a>
+          </div>  
+      {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
