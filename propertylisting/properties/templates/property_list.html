@@ -11,15 +11,19 @@
           <a href="">Go Back</a> | <a href="">Create Client</a>
         </div>  
         <hr>
-        <div class="col-lg-6 col-md-6 col-xs-6 margin-top-1">Page: 
-              {% for page in page_range %}
-                <a href="">{{page}}</a>
-              {% endfor %}
+        <div class="col-lg-6 col-md-6 col-xs-6 margin-top-1">
+
+              Page:
+              
+                {% for page in property_page.paginator.page_range %}
+                  <a href = "?page={{ page }}" class="{% if property_page.number == page  %}active{% endif %}">{{ page }}</a>
+                {% endfor %}
+              
         </div>
       </div>
     </div>
     <div id="COGNITO-data" class="card-deck row">
-      {% for property_list in property_list %}
+      {% for property in property_page %}
           <div class="col-lg-3 col-md-6 col-xs-12 margin-top-1">
             <a href="">
               <div class="card h-100">
@@ -27,11 +31,11 @@
                   <i class="fa fa-address-card fa-5x fa-align-center" aria-hidden="true"></i>
                 </div>
                 <div class="card-body">
-                  <h4 class="card-title">{{property_list.price}}</h4>
+                  <h4 class="card-title">{{property.price}}</h4>
                   <ul>
-                    <li><span class="card_attr">BEDROOMS: </span>{{property_list.bedrooms}}</li>
-                    <li><span class="card_attr">ADDRESS: </span>{{property_list.address}}</li>
-                    <li><span class="card_attr">COUNTY: </span>{{property_list.county}}</li>
+                    <li><span class="card_attr">BEDROOMS: </span>{{property.bedrooms}}</li>
+                    <li><span class="card_attr">ADDRESS: </span>{{property.address}}</li>
+                    <li><span class="card_attr">COUNTY: </span>{{property.county}}</li>
                   </ul>
                 </div>
               </div>
