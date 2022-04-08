@@ -4,7 +4,7 @@ from django.db import models
 
 class Property(models.Model):
     
-    def __str__(self):
+    def __unicode__(self):
         return self.county, self.street_address, self.bedrooms
         
         
@@ -75,6 +75,24 @@ class Property(models.Model):
         ('Wexford', 'Wexford'),
         ('Wicklow', 'Wicklow'),
     }
+    
+    BER_RATING = {
+        ('A1','A1'),
+        ('A2','A2'),
+        ('A3','A3'),
+        ('B1','B1'),
+        ('B2','B2'),
+        ('B3','B3'),
+        ('C1','C1'),
+        ('C2','C2'),
+        ('C3','C3'),
+        ('D1','D1'),
+        ('D2','D2'),
+        ('E1','E1'),
+        ('E2','E2'),
+        ('F','F'),
+        ('G','G')
+    }
     ############################################################################
     #   FIELDS
     ############################################################################
@@ -96,11 +114,23 @@ class Property(models.Model):
     ) 
     
     
+    ber_rating = models.CharField(
+        max_length = 20,
+        choices = BER_RATING,
+        default = 'A1'
+    ) 
+    
+    
     price = models.CharField(
         max_length = 30,
         default = '0'
     )
     
+    
+    description = models.CharField(
+        max_length = 300,
+        default = 'description'
+    )
     
     bedrooms = models.CharField(
         max_length = 5,

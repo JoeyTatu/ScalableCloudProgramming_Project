@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse
 from django.core.paginator import Paginator
 
@@ -6,7 +6,9 @@ from .models import Property
 
 # Create your views here.
 
-def index(request):
+def listing(request):
+    
+    print("in index view")
     
     property_list = [
         {'id':'1','price':'€345,000','bedrooms':'4', 'address':'11 West Avenue, Lios Rua, Ballyvolane','county': 'Cork'},
@@ -59,3 +61,14 @@ def index(request):
     }
     #return HttpResponse("Hello, world. You're at the polls index.")
     return render(request,'property_list.html',args)
+    
+    
+#   display the detail of individual entertainers
+def display_property_profile(request, property_id):
+    
+    print("in display_property_profile view")
+    
+    property = get_object_or_404(Property, pk=property_id)
+    
+    args = {'property': property}
+    return render(request,'property_profile.html',args)

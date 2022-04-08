@@ -46,7 +46,9 @@ div.entertainer_bio {
 }
 .orange-links{
     color:#dd6622;
-    font-family: 'Righteous', cursive;
+    font-family: 'Open Sans,Noto Sans TC,Noto Sans SC,Noto Sans Arabic,Noto Sans Georgian,Noto Sans Hebrew,Noto Sans JP,Noto Sans KR,Noto Sans Thai,Helvetica Neue,sans-serif', cursive;
+    font-size:16px;
+    
 }
 .text-centered{
     text-align:center;
@@ -359,6 +361,10 @@ td.left-column {
 }
 td.right-column {
     width: 50%;
+}
+
+th.property_details_heading {
+    width: 200px;
 }
 
 /**************************************************************************/

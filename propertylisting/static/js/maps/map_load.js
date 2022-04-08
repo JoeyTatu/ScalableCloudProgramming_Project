@@ -240,6 +240,8 @@ function init_expenses_map(){
 
 /* function to initialise and load the map to the ADD Client Page page */
 function init_clients_map(){
+  
+    console.log('map loading');
     
     /**
      * Load the initial map with marker set to first County in menu ---Antrim

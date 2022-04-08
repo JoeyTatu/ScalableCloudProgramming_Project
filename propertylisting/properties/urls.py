@@ -1,7 +1,10 @@
-from django.urls import path
+from django.conf.urls import url
 
 from . import views
 
+app_name = 'properties'
+
 urlpatterns = [
-    path('', views.index, name='index'),
+    url(r'^listing', views.listing, name='listing'),
+    url(r'^profile/(?P<property_id>[0-9]+)/$', views.display_property_profile, name="profile"),
 ]
