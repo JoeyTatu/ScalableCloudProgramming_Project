@@ -4,8 +4,9 @@ from django.db import models
 
 class Property(models.Model):
     
-    def __unicode__(self):
-        return self.property_type
+    def __str__(self):
+        return self.county, self.street_address, self.bedrooms
+        
         
     #def __unicode__(self):
     #     return self.name

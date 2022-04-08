@@ -18,6 +18,13 @@ body,
     color:#7c6659;
     font-family: 'Righteous', cursive;
 }
+
+
+.container_div{
+    margin-left:1em;
+    margin-right:1em;
+}
+
 .center-aligned{
     text-align: center;
 }
@@ -337,12 +344,23 @@ p#spinner{
 .card-img-top{
     height:140px;
 }
+.card-title{
+    font-size: 1.2em;
+    font-weight: bold;
+}    
 .card-text{
     font-size: 0.8em;
 }
 card_attr{
     text-decoration: underline;
 }
+td.left-column {
+    width: 50%;
+}
+td.right-column {
+    width: 50%;
+}
+
 /**************************************************************************/
 /*  HOME  */
 /**************************************************************************/

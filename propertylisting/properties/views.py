@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.core.paginator import Paginator
 
+from .models import Property
+
 # Create your views here.
 
 def index(request):
@@ -42,7 +44,9 @@ def index(request):
     ]
     
     
-    p = Paginator(property_list,8)
+    property_list_db = Property.objects.all()
+    
+    p = Paginator(property_list_db,6)
     
     page = request.GET.get('page')
     property_page = p.get_page(page)
