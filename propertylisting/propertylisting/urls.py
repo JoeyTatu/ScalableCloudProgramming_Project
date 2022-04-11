@@ -21,7 +21,7 @@ from properties.views import listing
 #import views 
 
 urlpatterns = [
-    url('', listing, name='home'),     #   the listing page is the home page
+    #url('', listing, name='home'),     #   the listing page is the home page
     url('^properties/', include('properties.urls')),
     url('admin/', admin.site.urls),
 

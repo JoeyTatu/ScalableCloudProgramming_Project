@@ -5,7 +5,7 @@ let map;
 let markers = [];
 let marker
 
-function re_center(map,selectedCounty){
+function re_center(map,selectedCounty,propertyLocation){
   var newCenter = myCenter;
   
   console.log('selectedCounty is '+selectedCounty);
@@ -109,11 +109,14 @@ function re_center(map,selectedCounty){
   
   console.log('recentering');
   
+  // recentre the mao based on county
   map.setCenter(newCenter);
 	map.setZoom(9);
+	console.log('centered');
 	
-  add_marker(newCenter,map);
-  populate_lat_lng(newCenter);
+	//  add the marker to the map based on property location
+  add_marker(propertyLocation,map);
+  populate_lat_lng(propertyLocation);
   
 }
 
@@ -128,17 +131,28 @@ function populate_lat_lng(newCenter){
 }
 
 
-// ADD MARKER to the map at the clicked location and push to the MARKER array
-function add_marker(location,map){
+// ADD MARKER to the map at the property location and push to the MARKER array
+function add_marker(propertyLocation,map){
 
+      //  clear any pre-existing markers
       delete_markers();
       
+      console.log('markers deleted');
+      //console.log('latitude = '+latitude),
+      //console.log('longitude = '+longitude)
+      //console.log('location is '+location);
+      
+     //var newLatlng = new google.maps.LatLng(latitude, longitude);
+      
       marker = new google.maps.Marker({
-        position: location,
+        position: propertyLocation,
+        //position = new google.maps.LatLng(latitude,longitude),
         label: labels[label_index++ % labels.length],
         map: map, 
         draggable: true,
       });
+      
+      console.log('markers object created');
       
       markers.push(marker);
       var pos = marker.getPosition();
@@ -236,6 +250,41 @@ function init_expenses_map(){
     
     
 }
+
+
+
+function init_property_profile_map(){
+      map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 7,
+        center: myCenter,
+    });
+    
+    add_marker(antrimCenter,map)
+    populate_lat_lng(antrimCenter);
+    
+    
+    //  recenter the marker based on county
+    //  and retrieve the latitude and longitude for the property
+    var selectedCounty = $('#property_county').text();
+    var latitude = parseFloat($('#property-lat').text());
+    var longitude = parseFloat($('#property-lng').text());
+
+    //latitude = 51.80382863345177; 
+    //longitude = -8.301821106176604;
+    console.log('selectedCounty is '+selectedCounty+' lat='+latitude+' lng='+longitude);
+    
+    console.log('latitude is numeric ='+$.isNumeric(latitude));
+    
+    console.log('longitude is numeric ='+$.isNumeric(longitude));
+    
+    var propertyLocation = new google.maps.LatLng(parseFloat(latitude), parseFloat(longitude)); 
+    
+    //propertyMapMarker = {lat:latitude, lng:longitude};
+    
+    re_center(map,selectedCounty,propertyLocation);
+  
+}
+
 
 
 /* function to initialise and load the map to the ADD Client Page page */

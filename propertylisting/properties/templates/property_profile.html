@@ -11,6 +11,8 @@
     <div class="spacer margin-top-1 margin-bottom-1">&nbsp;</div>
     <div>
         <h1>{{ property.street_address }}</h1>
+        <h6>County: <span id="property_county">{{ property.county }}</span></h6>
+        <br>
     </div>
     <a href="{% url 'properties:listing' %}">Go Back</a>
     <hr>
@@ -19,7 +21,8 @@
             <div class="col-lg-6 col-md-6 col-xs-12 margin-top-1">
                 <h6>{{ property.listing_type }}</h6>
                 <h3>€{{ property.price }}</h3>
-                <p>nbsp;</p>
+                <hr>
+                <p>&nbsp;</p>
                 <p>{{property.description}}</p>
                 <div id="details-heading">
                     <hr>
@@ -36,13 +39,17 @@
                         </tr>
                     </table>
                     <hr>
+                    <div id="property-lat-lng">
+                        <span id="property-lat">{{property.latitude}}</span>
+                        <span id="property-lng">{{property.longitude}}</span>
+                    </div>
                     <h5>Location</h5>
                     <div id="mapouter">
                         <a target="_blank" href="">Open Map</a>
                         <div id="map" class="google_map_canvas"></div>
                     </div>
                 </div>
-                
+
                 
             </div>
             <div class="col-lg-6 col-md-6 col-xs-12 margin-top-1">
@@ -61,6 +68,6 @@
 {% block scripts_bottom %}
     <script src="{% static "js/maps/map_constants.js" %}"></script>
     <script src="{% static "js/maps/map_load.js" %}"></script>
-    <script src="{% static "js/maps/map_prepare_clients.js" %}"></script>
+    <script src="{% static "js/maps/map_prepare_property.js" %}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0w1cO3ZEMdCW4n6GczBMRxiP92a7lhjA&callback=map_prepare_clients&v=weekly" async></script>
 {% endblock %}

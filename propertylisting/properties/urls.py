@@ -5,7 +5,7 @@ from . import views
 app_name = 'properties'
 
 urlpatterns = [
-    url('', views.listing, name='index'),
+    #url('', views.listing, name='index'),
     url(r'^listing', views.listing, name='listing'),
     url(r'^profile/(?P<property_id>[0-9]+)/$', views.display_property_profile, name="profile"),
 ]
