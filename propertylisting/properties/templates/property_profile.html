@@ -39,13 +39,15 @@
                         </tr>
                     </table>
                     <hr>
+
+                    <h5>Location:</h5>
                     <div id="property-lat-lng">
-                        <span id="property-lat">{{property.latitude}}</span>
-                        <span id="property-lng">{{property.longitude}}</span>
+                        lat: <span id="property-lat">{{property.latitude}}</span>
+                        lng: <span id="property-lng">{{property.longitude}}</span>
                     </div>
-                    <h5>Location</h5>
                     <div id="mapouter">
-                        <a target="_blank" href="">Open Map</a>
+                        <a target="_blank" href="//www.google.com/maps?q={{property.longitude}},{{property.latitude}}" class="map-open">Open Map</a>
+                        <br>
                         <div id="map" class="google_map_canvas"></div>
                     </div>
                 </div>

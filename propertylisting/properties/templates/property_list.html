@@ -13,7 +13,7 @@
         <div class="col-lg-6 col-md-6 col-xs-6 margin-top-1">Page:
               
                 {% for page in property_page.paginator.page_range %}
-                  <a href = "?page={{ page }}" class="{% if property_page.number == page  %}active{% endif %}">{{ page }}</a>
+                  <a href = "?page={{ page }}" class="page_link {% if property_page.number == page  %}active{% endif %}">{{ page }}</a>
                 {% endfor %}
               
         </div>
@@ -37,6 +37,7 @@
                             <li><span class="card_attr">TYPE: </span>{{property.property_type}}</li>
                             <li><span class="card_attr">PRICE: </span>{{property.price}}</li>
                             <li><span class="card_attr">LISTING: </span>{{property.listing_type}}</li>
+                            <li><span class="card_attr card_lat_long">{{property.latitude}},{{property.longitude}},/properties/profile/{{property.id}}</span></li>
                           </ul>
                         </div>
                       </div>
@@ -46,7 +47,7 @@
             </div>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 margin-top-1">
-          <p>**Click on map or drag marker to Client Location</p>
+          <p>**Click on map markers to view property profile</p>
           <hr>
           <div id="map"></div>
         </div>
@@ -58,6 +59,6 @@
 {% block scripts_bottom %}
     <script src="{% static "js/maps/map_constants.js" %}"></script>
     <script src="{% static "js/maps/map_load.js" %}"></script>
-    <script src="{% static "js/maps/map_prepare_clients.js" %}"></script>
+    <script src="{% static "js/maps/map_prepare_property_list.js" %}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0w1cO3ZEMdCW4n6GczBMRxiP92a7lhjA&callback=map_prepare_clients&v=weekly" async></script>
 {% endblock %}

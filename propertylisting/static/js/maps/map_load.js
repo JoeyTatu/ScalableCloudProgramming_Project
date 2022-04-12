@@ -116,7 +116,7 @@ function re_center(map,selectedCounty,propertyLocation){
 	
 	//  add the marker to the map based on property location
   add_marker(propertyLocation,map);
-  populate_lat_lng(propertyLocation);
+  //populate_lat_lng(propertyLocation);
   
 }
 
@@ -138,12 +138,7 @@ function add_marker(propertyLocation,map){
       delete_markers();
       
       console.log('markers deleted');
-      //console.log('latitude = '+latitude),
-      //console.log('longitude = '+longitude)
-      //console.log('location is '+location);
-      
-     //var newLatlng = new google.maps.LatLng(latitude, longitude);
-      
+
       marker = new google.maps.Marker({
         position: propertyLocation,
         //position = new google.maps.LatLng(latitude,longitude),
@@ -159,18 +154,31 @@ function add_marker(propertyLocation,map){
       console.log(pos);
       
       marker.addListener('drag',function(event) {
-        populate_lat_lng(event.latLng);
+        //populate_lat_lng(event.latLng);
       });
       
       marker.addListener('dragend',function(event) {
-        populate_lat_lng(event.latLng);
+        //populate_lat_lng(event.latLng);
       });
 }
 
 // adds all markers in the marker array to the map
 function set_map_on_all(map){
+  
+  console.log('in set_map_on_all function');
+  console.log('markers length');
+  console.log(markers.length);
+  
   for (let i = 0; i < markers.length; i++){
+    console.log('setting marker on map');
     markers[i].setMap(map);
+    
+    // add a click event listener to the marker so that it becomes a link
+    google.maps.event.addListener(marker, 'click', function() {
+      window.location.href = marker.url;
+    });
+    
+    
   }
 }
 
@@ -198,63 +206,9 @@ function delete_markers(){
 //  
 /////////////////////////////////////////////////////////////////////////
 
-function init_expenses_map(){
-    var selected_county = "";
-    var selected_client = "";
-    var selected_client_arr = [];
-    //var lat = 0.0
-    //var lng = 0.0
-    var newCenter = [];
-    
-    map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 7,
-        center: myCenter,
-    });
-    
-    
-    ////////////////////////////////////////////////////////////////////////////
-    //  Detect when the user has changed the Client Select menu and retrieve
-    //  details sp
-    ////////////////////////////////////////////////////////////////////////////
-    $('#company_name').change(function(){
-     
-        selected_client = $(this).find("option:selected").attr('value');
-        console.log('selected_client:'+selected_client);
-        
-        ///////////////////////////////////////////////////
-        //  split the selected_client string into an array
-        //  as it contains the lat and lng for the map
-        //////////////////////////////////////////////////
-        selected_client_arr = selected_client.split("__");
-        //for(var i=0; i< selected_client_arr.length; i++) {
-        //    console.log(selected_client_arr[i]);
-        //}
-        selected_county = selected_client_arr[1];
-        newCenter['lat'] = parseFloat(selected_client_arr[2]);
-        newCenter['lng'] = parseFloat(selected_client_arr[3]);
-        
-        console.log('selected_county: '+selected_county);
-        console.log('lat: '+newCenter['lat']);
-        console.log('lng: '+ newCenter['lng']);
-        ///////////////////////////////////////////////////
-        //  Based on the client selected
-        //  -   Recenter the map
-        //  -   Add a Map Marker
-        //  -   Populate the read only fields of the form
-        ///////////////////////////////////////////////////
-        re_center(map,selected_county);
-        add_marker(newCenter,map);
-        populate_lat_lng(newCenter);
-    });
-    
-    
-    
-}
-
-
 
 function init_property_profile_map(){
-      map = new google.maps.Map(document.getElementById("map"), {
+    map = new google.maps.Map(document.getElementById("map"), {
         zoom: 7,
         center: myCenter,
     });
@@ -269,12 +223,8 @@ function init_property_profile_map(){
     var latitude = parseFloat($('#property-lat').text());
     var longitude = parseFloat($('#property-lng').text());
 
-    //latitude = 51.80382863345177; 
-    //longitude = -8.301821106176604;
     console.log('selectedCounty is '+selectedCounty+' lat='+latitude+' lng='+longitude);
-    
     console.log('latitude is numeric ='+$.isNumeric(latitude));
-    
     console.log('longitude is numeric ='+$.isNumeric(longitude));
     
     var propertyLocation = new google.maps.LatLng(parseFloat(latitude), parseFloat(longitude)); 
@@ -285,41 +235,45 @@ function init_property_profile_map(){
   
 }
 
-
-
-/* function to initialise and load the map to the ADD Client Page page */
-function init_clients_map(){
+//  populate the map for teh listing page
+function init_property_list_map(){
   
-    console.log('map loading');
-    
-    /**
-     * Load the initial map with marker set to first County in menu ---Antrim
-     */ 
-    map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 7,
-        center: myCenter,
-    });
-    
-    add_marker(antrimCenter,map);
-    populate_lat_lng(antrimCenter);
+  //  clear the map of any markers
+  delete_markers();
+  
+  //  create the map and center it
+  map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 7,
+      center: myCenter,
+  });
 
-    
-    /**
-     *  Event Listener calls addMarker when the map is clicked
-     *  Also retrieves the Latitured and Longitude of the marker
-     */ 
-    google.maps.event.addListener(map,"click",(event) => {
-        add_marker(event.latLng, map);
-        populate_lat_lng(event.latLng);
-    });
-    
-    
-    //  Select the county to focus on
-    $("#id_county").change(function() {
-        console.log('item changed');
-        var selectedCounty = $('#id_county option:selected').text();
-        console.log(selectedCounty);
-        re_center(map,selectedCounty);
-    });
+  //  create array to create and hold the markers for each of the proprties on the page
+  //var propertyArr = [];
+  $('.card_lat_long').each(function () { // <-- Missed { here
+      strPos = $(this).text();
+      
+      console.log($(this).text());
+      strPosArr = strPos.split(",")
+      var propertyLocation = new google.maps.LatLng(parseFloat(strPosArr[0]), parseFloat(strPosArr[1])); 
+      //markers.push(propertyLocation);
+      
+      marker = new google.maps.Marker({
+        position: propertyLocation,
+        //position = new google.maps.LatLng(latitude,longitude),
+        label: labels[label_index++ % labels.length],
+        map: map, 
+        url: strPosArr[0],    //  Retrieve the URL from the string passed in
+        draggable: true,
+      });
+      
+
+      markers.push(marker);
+      var pos = marker.getPosition();
+      console.log(pos);
+      
+  });
+  
+  //  populate the map with the markers in the markers array
+  set_map_on_all(map,);
 
 }
