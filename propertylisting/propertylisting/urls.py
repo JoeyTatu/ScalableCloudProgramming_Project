@@ -21,7 +21,7 @@ from django.conf.urls import include, url
 #import views 
 
 urlpatterns = [
-    url('', include('users.urls')),     #   the listing page is the home page
+    url('^users/', include('users.urls')),     #   the listing page is the home page
     url('^properties/', include('properties.urls')),
     url('admin/', admin.site.urls),
 ]
