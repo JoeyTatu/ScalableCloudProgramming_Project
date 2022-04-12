@@ -171,11 +171,16 @@ function set_map_on_all(map){
   
   for (let i = 0; i < markers.length; i++){
     console.log('setting marker on map');
+    //  set the marker on the map
     markers[i].setMap(map);
     
+    console.log('the marker url is '+markers[i].url);
+    
     // add a click event listener to the marker so that it becomes a link
-    google.maps.event.addListener(marker, 'click', function() {
-      window.location.href = marker.url;
+    google.maps.event.addListener(markers[i], 'click', function() {
+      console.log('marker clicked');
+      
+      window.location.href = markers[i].url;
     });
     
     
@@ -259,10 +264,9 @@ function init_property_list_map(){
       
       marker = new google.maps.Marker({
         position: propertyLocation,
-        //position = new google.maps.LatLng(latitude,longitude),
         label: labels[label_index++ % labels.length],
         map: map, 
-        url: strPosArr[0],    //  Retrieve the URL from the string passed in
+        url: strPosArr[2],    //  Retrieve the URL from the string passed in
         draggable: true,
       });
       

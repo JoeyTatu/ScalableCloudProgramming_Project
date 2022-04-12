@@ -9,3 +9,10 @@
     margin-bottom: 1em;
 }
 
+.li_lat_long{
+  display:none;
+}
+
+#mapouter{
+  margin-top: 1em;
+}
