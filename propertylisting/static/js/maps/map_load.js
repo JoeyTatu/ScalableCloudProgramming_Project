@@ -270,7 +270,6 @@ function init_property_list_map(){
         draggable: true,
       });
       
-
       markers.push(marker);
       var pos = marker.getPosition();
       console.log(pos);
