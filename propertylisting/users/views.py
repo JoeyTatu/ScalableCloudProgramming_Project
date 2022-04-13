@@ -12,6 +12,7 @@ def index(request):
     #property = get_object_or_404(Property, pk=property_id)
     
     args = {}
-    return render(request,'landing_page.html',args)
+    return HttpResponse('<h1>Log in page</h1>')
+
 
     #return redirect('properties.views.listing', args)

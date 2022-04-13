@@ -127,7 +127,7 @@ class Property(models.Model):
     )
     
     
-    description = models.CharField(
+    description = models.TextField(
         max_length = 600,
         default = 'description'
     )

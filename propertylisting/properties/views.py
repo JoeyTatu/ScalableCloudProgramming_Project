@@ -14,7 +14,7 @@ from .models import Property
 
 
 
-def listings(request):
+def listings(request, *args, **kwargs):
     
     print("in index view")
     

@@ -16,12 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include, url
+from home.views import home_view
 #from properties.views import listings
 
 #import views 
 
 urlpatterns = [
-    url('^users/', include('users.urls')),     #   the listing page is the home page
-    url('^properties/', include('properties.urls')),
-    url('admin/', admin.site.urls),
+    path('', home_view, name='home'),
+    #url(r'^users/', include('users.urls')),     #   the listing page is the home page
+    path('properties/', include('properties.urls')),
+    path('admin/', admin.site.urls),
 ]

@@ -1,7 +1,9 @@
 admin user: ec2-user 
 admin password: ec2-user
 
+create landing page
 
+create propety upload page
 
 Create index in users and forward straight to listing page
 

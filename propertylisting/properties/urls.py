@@ -1,11 +1,12 @@
 from django.conf.urls import url
+from django.urls import path
 
 from . import views
 
 app_name = 'properties'
 
 urlpatterns = [
-    #url('', views.listing, name='index'),
-    url(r'^listings', views.listings, name='listings'),
-    url(r'^profile/(?P<property_id>[0-9]+)/$', views.display_property_profile, name="profile"),
+    path('', views.listings, name='index'),
+    path(r'listings', views.listings, name='listings'),
+    path(r'profile/<int:property_id>/', views.display_property_profile, name="profile"),
 ]
