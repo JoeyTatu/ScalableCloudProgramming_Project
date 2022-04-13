@@ -9,4 +9,5 @@ urlpatterns = [
     path('', views.listings, name='index'),
     path(r'listings', views.listings, name='listings'),
     path(r'profile/<int:property_id>/', views.display_property_profile, name="profile"),
+    path(r'add_property_listing', views.add_property_listing,name="add_property_listing")
 ]

@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.core.paginator import Paginator
 
 from .models import Property
+from .forms import AddPropertyListingForm
 
 # Create your views here.
 
@@ -17,6 +18,7 @@ from .models import Property
 def listings(request, *args, **kwargs):
     
     print("in index view")
+    print(args,kwargs)
     
     property_list = [
         {'id':'1','price':'€345,000','bedrooms':'4', 'address':'11 West Avenue, Lios Rua, Ballyvolane','county': 'Cork'},
@@ -80,3 +82,24 @@ def display_property_profile(request, property_id):
     
     args = {'property': property}
     return render(request,'property_profile.html',args)
+   
+    
+def add_property_listing(request):
+    
+    
+    '''
+        TO DO
+        Add in the action for the form submission
+        
+        See timekeepr app companies views.py
+    '''
+    
+    
+    
+    #   If the page was just browsed to
+    #   Then load an empty form for uploading a property listing
+    form = AddPropertyListingForm()
+    
+    args = {'heading' : 'Add Property Listing', 'form': form}
+    #return HttpResponse("add listing page")
+    return render(request,'add_property_listing.html',args)

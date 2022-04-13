@@ -1,10 +1,15 @@
 admin user: ec2-user 
 admin password: ec2-user
 
-create landing page
+create landing page - done
 
-create propety upload page
+create propety upload page - in progress 
+    -    add the google Map to it
 
+create login page 
+
+
+--------------------------------------------------------------------
 Create index in users and forward straight to listing page
 
 Change the base.html to include URL to register and login forms
