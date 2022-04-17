@@ -6,7 +6,9 @@ from properties.models import Property
 
 
 
-# create the form used to upload property listings
+#   create the form used to upload property listings
+#   use this form if uploading with an API
+#   Put a  JQUERY click action on the button to send upload request to the API
 class AddPropertyListingForm(forms.Form):
     
     PROPERTY_TYPE={
@@ -165,6 +167,8 @@ class AddPropertyListingForm(forms.Form):
         #fields = ('property_type','listing_type','street_address','county','latitude','longitude','bedrooms','ber_rating','description','price',)
         
         
+# create the form used to upload property listings
+#   Use this form for uploading direct to DB
 class AddPropertyListingForm2(ModelForm):
     class Meta:
         model = Property
