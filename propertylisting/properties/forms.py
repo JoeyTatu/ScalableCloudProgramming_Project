@@ -1,4 +1,9 @@
 from django import forms 
+from django.forms import ModelForm
+#from django.forms import ModelForms
+from properties.models import Property
+
+
 
 
 # create the form used to upload property listings
@@ -113,6 +118,19 @@ class AddPropertyListingForm(forms.Form):
         widget = forms.Select(choices=COUNTIES, attrs={'class':'form-control'})
     )
     
+    latitude = forms.CharField(
+        label='Latitude',
+        max_length = 30,
+        widget=forms.TextInput(attrs={'class':'form-control'})
+    )
+    
+    
+    longitude = forms.CharField(
+        label='Longitude',
+        max_length = 30,
+        widget=forms.TextInput(attrs={'class':'form-control'})
+    )
+    
     
     bedrooms = forms.CharField(
         label='Bedrooms',
@@ -121,7 +139,7 @@ class AddPropertyListingForm(forms.Form):
     ) 
     
     ber_rating = forms.CharField(
-        label='Bedrooms',
+        label='BER Rating',
         max_length = 20,
         widget = forms.Select(choices=BER_RATING, attrs={'class':'form-control'})
     ) 
@@ -139,15 +157,15 @@ class AddPropertyListingForm(forms.Form):
     )
 
         
-    latitude = forms.CharField(
-        label='Latitude',
-        max_length = 30,
-        widget=forms.TextInput(attrs={'class':'form-control'})
-    )
-    
-    
-    longitude = forms.CharField(
-        label='Longitude',
-        max_length = 30,
-        widget=forms.TextInput(attrs={'class':'form-control'})
-    )
+
+    #   Associate the class against the form
+    #   Define which fiels should be displayed
+    class Meta:
+        model = Property
+        #fields = ('property_type','listing_type','street_address','county','latitude','longitude','bedrooms','ber_rating','description','price',)
+        
+        
+class AddPropertyListingForm2(ModelForm):
+    class Meta:
+        model = Property
+        fields = ['property_type','listing_type','street_address','county','latitude','longitude','bedrooms','ber_rating','description','price']

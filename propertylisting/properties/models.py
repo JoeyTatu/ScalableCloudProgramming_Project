@@ -152,7 +152,6 @@ class Property(models.Model):
     )
     
     
-        
     latitude = models.CharField(
         max_length = 30,
         default = '53.423596'

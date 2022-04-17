@@ -126,8 +126,8 @@ function populate_lat_lng(newCenter){
   console.log(newCenter);
   console.log(newCenter['lat']);
   console.log(newCenter['lng']);
-  $('#id_lat').val(newCenter['lat']).prop("readonly", true);
-  $('#id_lng').val(newCenter['lng']).prop("readonly", true);  ;
+  $('#id_latitude').val(newCenter['lat']).prop("readonly", true);
+  $('#id_longitude').val(newCenter['lng']).prop("readonly", true);  ;
 }
 
 
@@ -147,11 +147,11 @@ function add_marker(propertyLocation,map){
         draggable: true,
       });
       
-      console.log('markers object created');
+      //console.log('markers object created');
       
       markers.push(marker);
       var pos = marker.getPosition();
-      console.log(pos);
+      //console.log(pos);
       
       marker.addListener('drag',function(event) {
         //populate_lat_lng(event.latLng);
@@ -165,9 +165,9 @@ function add_marker(propertyLocation,map){
 // adds all markers in the marker array to the map
 function set_map_on_all(map){
   
-  console.log('in set_map_on_all function');
-  console.log('markers length');
-  console.log(markers.length);
+  //console.log('in set_map_on_all function');
+  //console.log('markers length');
+  //console.log(markers.length);
   
   for (let i = 0; i < markers.length; i++){
     console.log('setting marker on map');
@@ -224,9 +224,9 @@ function init_property_profile_map(){
     
     //  recenter the marker based on county
     //  and retrieve the latitude and longitude for the property
-    var selectedCounty = $('#property_county').text();
-    var latitude = parseFloat($('#property-lat').text());
-    var longitude = parseFloat($('#property-lng').text());
+    var selectedCounty = $('#id_county').text();
+    var latitude = parseFloat($('#id_latitude').text());
+    var longitude = parseFloat($('#id_longitude').text());
 
     console.log('selectedCounty is '+selectedCounty+' lat='+latitude+' lng='+longitude);
     console.log('latitude is numeric ='+$.isNumeric(latitude));
@@ -238,6 +238,38 @@ function init_property_profile_map(){
     
     re_center(map,selectedCounty,propertyLocation);
   
+}
+
+
+function init_property_add_map(){
+
+    /**
+     * Load the initial map with marker set to first County in menu ---Antrim
+     */ 
+    map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 7,
+        center: myCenter,
+    });
+    add_marker(antrimCenter,map);
+    populate_lat_lng(antrimCenter);
+    
+    
+    /**
+     *  Event Listener calls addMarker when the map is clicked
+     *  Also retrieves the Latitured and Longitude of the marker
+     */ 
+    google.maps.event.addListener(map,"click",(event) => {
+        add_marker(event.latLng, map);
+        populate_lat_lng(event.latLng);
+    });
+    
+        //  Select the county to focus on
+    $("#id_county").change(function() {
+        console.log('item changed');
+        var selectedCounty = $('#id_county option:selected').text();
+        console.log(selectedCounty);
+        re_center(map,selectedCounty);
+    });
 }
 
 //  populate the map for teh listing page

@@ -11,7 +11,7 @@
     <div class="spacer margin-top-1 margin-bottom-1">&nbsp;</div>
     <div>
         <h1>{{ property.street_address }}</h1>
-        <h6>County: <span id="property_county">{{ property.county }}</span></h6>
+        <h6>County: <span id="id_county">{{ property.county }}</span></h6>
         <br>
     </div>
     <a href="{% url 'properties:listings' %}">Go Back</a>
@@ -42,8 +42,8 @@
 
                     <h5>Location:</h5>
                     <div id="property-lat-lng">
-                        lat: <span id="property-lat">{{property.latitude}}</span>
-                        lng: <span id="property-lng">{{property.longitude}}</span>
+                        lat: <span id="id_latitude">{{property.latitude}}</span>
+                        lng: <span id="id_longitude">{{property.longitude}}</span>
                     </div>
                     <div id="mapouter">
                         <a target="_blank" href="//www.google.com/maps?q={{property.latitude}},{{property.longitude}}" class="map-open">Open Google Maps</a>
