@@ -241,6 +241,20 @@ function init_property_profile_map(){
 }
 
 
+function add_property_add_form_controls(){
+  $('#id_property_type').addClass("form-control")
+  $('#id_listing_type').addClass("form-control")
+  $('#id_street_address').addClass("form-control")
+  $('#id_county').addClass("form-control")
+  $('#id_latitude').addClass("form-control")
+  $('#id_longitude').addClass("form-control")
+  $('#id_bedrooms').addClass("form-control")
+  $('#id_ber_rating').addClass("form-control")
+  $('#id_description').addClass("form-control")
+  $('#id_price').addClass("form-control")
+}
+
+
 function init_property_add_map(){
 
     /**

@@ -169,3 +169,94 @@ class AddPropertyListingForm2(ModelForm):
     class Meta:
         model = Property
         fields = ['property_type','listing_type','street_address','county','latitude','longitude','bedrooms','ber_rating','description','price']
+        
+        
+        '''
+        PROPERTY_TYPE={
+           ('BUNGALOW','BUNGALOW'),
+           ('DETACHED','DETACHED'),
+           ('SEMI-DETACHED','SEMI-DETACHED'),
+           ('TERRACED','TERRACED'),
+           ('APPARTMENT','APPARTMENT'),
+           ('SITE','SITE'),
+           ('PARKING SPACE','PARKING SPACE')
+        }
+
+   
+        LISTING_TYPE={
+           ('FOR SALE','FOR SALE'),
+           ('FOR LEASE','FOR LEASE'),
+        }
+        
+    
+        BEDROOMS = {
+            ('1','1'),
+            ('2','2'),
+            ('3','3'),
+            ('4','4'),
+            ('5','5'),
+            ('6','6'),
+            ('7','7'),
+            ('8','8'),
+            ('9','9'),
+            ('10+','10+'),
+        }
+        
+    
+        COUNTIES = {
+            ('Antrim', 'Antrim'),
+            ('Armagh', 'Armagh'),
+            ('Carlow', 'Carlow'),
+            ('Cavan', 'Cavan'),
+            ('Clare', 'Clare'),
+            ('Cork', 'Cork'),
+            ('Derry', 'Derry'),
+            ('Donegal', 'Donegal'),
+            ('Down', 'Down'),
+            ('Dublin', 'Dublin'),
+            ('Fermanagh', 'Fermanagh'),
+            ('Galway', 'Galway'),
+            ('Kerry', 'Kerry'),
+            ('Kildare', 'Kildare'),
+            ('Kilkenny', 'Kilkenny'),
+            ('Laois', 'Laois'),
+            ('Leitrim', 'Leitrim'),
+            ('Limerick', 'Limerick'),
+            ('Longford', 'Longford'),
+            ('Louth', 'Louth'),
+            ('Mayo', 'Mayo'),
+            ('Meath', 'Meath'),
+            ('Monaghan', 'Monaghan'),
+            ('Offaly', 'Offaly'),
+            ('Roscommon', 'Roscommon'),
+            ('Sligo', 'Sligo'),
+            ('Tipperary', 'Tipperary'),
+            ('Tyrone', 'Tyrone'),
+            ('Waterford', 'Waterford'),
+            ('Westmeath', 'Westmeath'),
+            ('Wexford', 'Wexford'),
+            ('Wicklow', 'Wicklow'),
+        }
+    
+        BER_RATING = {
+            ('A1','A1'),
+            ('A2','A2'),
+            ('A3','A3'),
+            ('B1','B1'),
+            ('B2','B2'),
+            ('B3','B3'),
+            ('C1','C1'),
+            ('C2','C2'),
+            ('C3','C3'),
+            ('D1','D1'),
+            ('D2','D2'),
+            ('E1','E1'),
+            ('E2','E2'),
+            ('F','F'),
+            ('G','G')
+        }
+    
+        fields = ['street_address']
+        street_address = forms.TextInput(attrs={'id': 'id_street_address', 'class':'form-control'})
+        first_name = forms.TextInput(attrs={'id': 'firstname',  'class':'form-control'})
+'''

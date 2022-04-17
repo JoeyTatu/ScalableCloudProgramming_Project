@@ -4,6 +4,7 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   		<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
   		<link rel="stylesheet" href="{% static "css/maps/mapstyle.css" %}">
+  		<link rel="stylesheet" href="{% static "css/property/add_property.css" %}">
 {% endblock %}
 {% block title %} Add a Client {% endblock %}
 
@@ -15,11 +16,11 @@
     </div>
     <a href="{% url 'properties:listings' %}">Go Back</a>
     <hr>
-    <div id="COGNITO-data" class="card-deck row">
+    <div id="Property-data" class="card-deck row">
       <div class="container">
         <div class="row">
           <div class="col-lg-6 col-md-6 col-xs-12 margin-top-1">
-            <form id="client_form" action="{% url 'properties:add_property_listing' %}" method="POST">
+            <form id="property_add_form" action="{% url 'properties:add_property_listing' %}" method="POST">
               {% csrf_token %}
               {{ form }}
               <hr>
